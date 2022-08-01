@@ -1,0 +1,20 @@
+﻿@page "/generic-component"
+@using System.Linq;
+@using BlazorApp1.Data
+
+@inherits ComponentBase
+@typeparam TItem
+
+<h3>GenericComponent</h3>
+
+<div>
+    Number of items passed: @DataItems.Count()
+</div>
+
+@code {
+    [Parameter]
+    public IEnumerable<TItem> DataItems { get; set; }
+
+    [Parameter]
+    public EventCallback<GenericComponentEventArgs<TItem>> OnItemClick { get; set; }
+}

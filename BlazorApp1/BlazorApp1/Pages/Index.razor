@@ -1,0 +1,29 @@
+﻿@page "/"
+@using BlazorApp1.Data
+
+<PageTitle>Index</PageTitle>
+
+<TestComponent 
+    DataItems="@People"
+    OnItemClick="@((GenericComponentEventArgs<Person> args) => HandleItemClick(args))"
+    TItem="Person">
+</TestComponent>
+
+@code {
+    public class Person
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
+    IEnumerable<Person> People = new List<Person>()
+    {
+        new Person(){Name="Joe", Id = 1 },
+        new Person(){Name="Joe", Id = 1 },
+    };
+
+    private void HandleItemClick(GenericComponentEventArgs<Person> args)
+    {
+        Console.WriteLine("reached");
+    }
+}
