@@ -3,11 +3,16 @@
 
 <PageTitle>Index</PageTitle>
 
-<TestComponent 
+<TestComponent DataItems="@People"
+               OnItemClick="@((GenericComponentEventArgs<Person> args) => HandleItemClick(args))">
+</TestComponent>
+
+@*TItem must be specified to work with .NET7 prev 5 and newer*@
+@*<TestComponent
     DataItems="@People"
     OnItemClick="@((GenericComponentEventArgs<Person> args) => HandleItemClick(args))"
     TItem="Person">
-</TestComponent>
+</TestComponent>*@
 
 @code {
     public class Person
@@ -18,8 +23,8 @@
 
     IEnumerable<Person> People = new List<Person>()
     {
-        new Person(){Name="Joe", Id = 1 },
-        new Person(){Name="Joe", Id = 1 },
+        new Person(){ Name="Joe", Id = 1 },
+        new Person(){ Name="Jane", Id = 2 },
     };
 
     private void HandleItemClick(GenericComponentEventArgs<Person> args)
